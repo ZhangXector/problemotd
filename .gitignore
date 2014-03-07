@@ -1,3 +1,7 @@
+# Visual Studio Solution
+MatrixRotation/
+.gitattributes
+
 # Object files
 *.o
 *.ko
