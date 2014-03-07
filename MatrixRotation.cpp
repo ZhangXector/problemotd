@@ -35,6 +35,15 @@ vector< vector<int> > buildMatrix(int matrixSize)
 	return matrix;
 }
 
+// Rotate Clockwise Function
+// Rotates a matrix clockwise
+// Params: The matrix to be rotated
+// Returns: The rotated matrix
+vector< vector<int> > rotateClockwise(vector< vector<int> >& matrix)
+{
+
+}
+
 // Print Matrix Function
 // Prints all values of the matrix
 // Params: The matrix to print
@@ -89,6 +98,9 @@ int main(int argc, char* argv[])
 
 	// Print matrix
 	printMatrix(matrix);
+
+	// Wait for user input before closing window
+	cin.get();
 
 	// Successfully exit
 	return EXIT_SUCCESS;
