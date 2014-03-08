@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
+    <Text Include="..\MatrixRotation.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
