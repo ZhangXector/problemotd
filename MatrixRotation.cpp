@@ -35,13 +35,58 @@ vector< vector<int> > buildMatrix(int matrixSize)
 	return matrix;
 }
 
+// Rotate Counter-Clockwise Function
+// Rotates a matrix counter-clockwise
+// Params: The matrix to be rotated
+// Returns: The rotated matrix
+vector< vector<int> > rotateCounterClockwise(vector< vector<int> >& matrix)
+{
+	vector< vector<int> > copyMatrix = matrix;
+
+	int row = 0;
+	int column = matrix.size() - 1;
+
+	for (int i = 0; i < matrix.size(); ++i)
+	{
+		for (int j = 0; j < matrix.size(); j++)
+		{
+			matrix[i][j] = copyMatrix[row][column];
+			if (row < matrix.size() - 1)
+				++row;
+			else
+				row = 0;
+		}
+		--column;
+	}
+
+	return matrix;
+}
+
 // Rotate Clockwise Function
 // Rotates a matrix clockwise
 // Params: The matrix to be rotated
 // Returns: The rotated matrix
 vector< vector<int> > rotateClockwise(vector< vector<int> >& matrix)
 {
+	vector< vector<int> > copyMatrix = matrix;
 
+	int row = matrix.size() - 1;
+	int column = 0;
+
+	for (int i = 0; i < matrix.size(); ++i)
+	{
+		for (int j = 0; j < matrix.size(); j++)
+		{
+			matrix[i][j] = copyMatrix[row][column];
+			if (row > 0)
+				--row;
+			else
+				row = matrix.size() - 1;
+		}
+		++column;
+	}
+
+	return matrix;
 }
 
 // Print Matrix Function
@@ -51,12 +96,14 @@ void printMatrix(vector< vector<int> >& matrix)
 {
 	for(int i = 0; i < matrix.size(); ++i)
 	{
-		cout<<"\n";
+		cout << "\n";
 		for(int j = 0; j < matrix.size(); ++j)
 		{
-			cout<<matrix[i][j]<<"\t";
+			cout<<matrix[i][j] << "\t";
 		}
 	}
+
+	cout << "\n";
 }
 
 // Main Function
@@ -79,7 +126,7 @@ int main(int argc, char* argv[])
 		stringstream convert(argv[1]);
 		if(!(convert >> matrixSize))
 		{
-			cout<<"Unable to use number "<<argv[1]<<". Please use a valid number\n";
+			cout<<"Unable to use number " << argv[1] << ". Please use a valid number\n";
 			return EXIT_FAILURE;
 		}
 	}
@@ -91,13 +138,35 @@ int main(int argc, char* argv[])
 	}
 
 	// Output matrix size
-	cout<<"Matrix size -> "<<matrixSize<<"\n";
-	
+	cout << "Matrix size -> " << matrixSize << "\n\n";
+
 	// Build matrix
 	vector< vector<int> > matrix = buildMatrix(matrixSize);
 
 	// Print matrix
+	cout << "Original Matrix:\n";
 	printMatrix(matrix);
+
+	// Make a copy of the matrix
+	vector< vector<int> > copyMatrix = matrix;
+
+	// Rotate matrix clockwise
+	matrix = rotateClockwise(matrix);
+
+	// Print matrix
+	cout << "Clockwise Rotated Matrix: \n";
+	printMatrix(matrix);
+
+	// Rotate matrix counter-clockwise
+	matrix = copyMatrix;
+	matrix = rotateCounterClockwise(matrix);
+
+	// Print matrix
+	cout << "Counter-clockwise Rotated Matrix: \n";
+	printMatrix(matrix);
+
+	// New line, because aesthetics
+	cout << "\n";
 
 	// Wait for user input before closing window
 	cin.get();
