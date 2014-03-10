@@ -1,4 +1,6 @@
 Vigenère cipher
+===============
+
 The Vigenère cipher made its rounds in the mid-1550s up until the end of the American Civil War. It was very easy for soldiers to encode messages and pass them around to all the allied camps.
 
 The cipher requires a key and a message. It works like this:
@@ -8,8 +10,8 @@ REDDIT
 Message:
 TODAYISMYBIRTHDAY
 REDDITREDDITREDDI
+
 TODAYISMYBIRTHDAY
---------------------------
 KSGDGBJQBEQKKLGDG
 
 Using a 0 based alphabet (A=0), R is the 17th letter of the alphabet and T is the 19th letter of the alphabet. (17 + 19) mod 26 = 11 which is where K resides in the alphabet. Repeat for each key/message letter combination until done.
