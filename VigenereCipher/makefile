@@ -1,10 +1,10 @@
 all: vigenere-cipher
 
 run: release
-	./vigenere-cipher.o
+	./vigenere-cipher.o reddit todayismybirthday
 
 debug: clean vigenere-cipher-debug
-	gdb vigenere-cipher.o
+	gdb vigenere-cipher.o reddit todayismybirthday
 
 release: clean vigenere-cipher
 
