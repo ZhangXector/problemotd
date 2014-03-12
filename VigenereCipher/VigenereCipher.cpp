@@ -30,7 +30,20 @@ int main(int argc, char* argv[])
 	string key(argv[1]);
 	string message(argv[2]);
 
-	cout << "Key: " << key << "\n";
+	for(int i = 0, j = 0; i < message.size(); ++i, ++j)
+	{
+		if(j >= key.size())
+			j = 0;
+
+	}
+	/*
+	for(int i = 0; i < key.size(); ++i)
+	{
+		cout << "\nKey: " << key[i] << " -> \t" << alpha.find_first_of(key[i]) << "\n\t\t+\nMessage: " << message[i] << " -> \t" << alpha.find_first_of(message[i]);
+	}
+	*/
+
+	cout << "\n\nKey: " << key << "\n";
 	cout << "Message: " << message << "\n";
 
 	// New line, because aesthetics
