@@ -4,13 +4,13 @@ encode: release
 	./vigenere-cipher.o -e REDDIT TODAYISMYBIRTHDAY
 
 decode: release
-	./vigenere-cipher.o -d ZEJFOKHTMSRMELCPODWHCGAW
+	./vigenere-cipher.o -d DAY ZEJFOKHTMSRMELCPODWHCGAW
 
 debug-encode: clean vigenere-cipher-debug
 	gdb vigenere-cipher.o -e REDDIT TODAYISMYBIRTHDAY
 
 debug-decode: clean vigenere-cipher-debug
-	gdb vigenere-cipher.o -d ZEJFOKHTMSRMELCPODWHCGAW
+	gdb vigenere-cipher.o -d DAY ZEJFOKHTMSRMELCPODWHCGAW
 
 release: clean vigenere-cipher
 
