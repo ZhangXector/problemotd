@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include <string>
 
 using namespace std;
@@ -8,47 +9,84 @@ using namespace std;
 #define EXIT_FAILURE 1
 
 // Alphabet string constant
-const string alpha = "abcdefghijklmnopqrstuvwxyz";
+const string alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-int main(int argc, char* argv[])
+char encrypt_char(char k, char m)
 {
-	// Check to make sure we have a key and message
-	if(argc != 3)
-	{
-		cout << "Please use this program with a key and messsage.\n(e.g. vigenere-cipher.o reddit todayismybirthday)\n";
-		cin.get();
-		return EXIT_FAILURE;
-	}
+	int kNum = alpha.find_first_of(k);
+	int mNum = alpha.find_first_of(m);
+	int newNum = kNum + mNum;
+	newNum %= alpha.size();
+	return alpha[newNum];
+}
 
-	// Check to make sure the key is shorter than the message being encrypted
-	if(strlen(argv[1]) > strlen(argv[2]))
-	{
-		cout << "Key must me shorter than the message.\n";
-		cin.get();
-		return EXIT_FAILURE;
-	}
-
-	// Store key and message in strings
-	string key(argv[1]);
-	string message(argv[2]);
-
+string encrypt(string key, string message)
+{
+	string returnString;
 	for(int i = 0, j = 0; i < message.size(); ++i, ++j)
 	{
 		if(j >= key.size())
 			j = 0;
-		cout << "\nI (Message Value): " << i;
-		cout << "\nJ (Key Value): " << j;
-
+		returnString += encrypt_char(key[j], message[i]);
 	}
-	/*
-	for(int i = 0; i < key.size(); ++i)
+	return returnString;
+}
+
+int main(int argc, char* argv[])
+{
+	// Check if this is an encode or decode
+	string arg1(argv[1]);
+	if(arg1 == "-e")
 	{
-		cout << "\nKey: " << key[i] << " -> \t" << alpha.find_first_of(key[i]) << "\n\t\t+\nMessage: " << message[i] << " -> \t" << alpha.find_first_of(message[i]);
+		// Wrong amount of arguments for encoding
+		if(argc != 4)
+		{
+			cout << "When encoding please supply a command, key, and message.\n";
+			cout << "(e.g. vigenere-cipher.o -e key message)\n";
+			cin.get();
+			return EXIT_FAILURE;
+		}
+		else
+		{
+			// Check to make sure the key is shorter than the message being encrypted
+			if(strlen(argv[2]) > strlen(argv[3]))
+			{
+				cout << "Key must me shorter than the message.\n";
+				cin.get();
+				return EXIT_FAILURE;
+			}
+			else
+			{
+				string key(argv[2]);
+				string message(argv[3]);
+				cout << encrypt(key, message) << "\n";
+			}
+		}
 	}
-	*/
+	else if(arg1 == "-d")
+	{
+		if(argc != 3)
+		{
+			cout << "When decoding please supply a command and message.\n";
+			cout << "(e.g. vigenere-cipher.o -d message)\n";
+			cin.get();
+			return EXIT_FAILURE;
+		}
+		else
+		{
+			string message(argv[2]);
+			//cout << decrypt(message) << "\n";
+		}
+	}
+	else
+	{
+		cout << "Please supply a command. Use -e for encode and -d for decode.\n";
+		cout << "(e.g. vigenere-cipher.o -(e/d) <key> message)\n";
+		cout << "You entered -> " << argv[1] << "\n";
+		cin.get();
+		return EXIT_FAILURE;
+	}
 
-	cout << "\n\nKey: " << key << "\n";
-	cout << "Message: " << message << "\n";
 
 	// New line, because aesthetics
 	cout << "\n";
