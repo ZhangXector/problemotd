@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 
 using namespace std;
 
@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
 	if(argc != 3)
 	{
 		cout << "Please use this program with a key and messsage.\n(e.g. vigenere-cipher.o reddit todayismybirthday)\n";
+		cin.get();
 		return EXIT_FAILURE;
 	}
 
@@ -23,6 +24,7 @@ int main(int argc, char* argv[])
 	if(strlen(argv[1]) > strlen(argv[2]))
 	{
 		cout << "Key must me shorter than the message.\n";
+		cin.get();
 		return EXIT_FAILURE;
 	}
 
@@ -34,6 +36,8 @@ int main(int argc, char* argv[])
 	{
 		if(j >= key.size())
 			j = 0;
+		cout << "\nI (Message Value): " << i;
+		cout << "\nJ (Key Value): " << j;
 
 	}
 	/*
